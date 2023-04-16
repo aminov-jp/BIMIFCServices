@@ -37,6 +37,13 @@ Here, you can find the definitions of various services, which we will continuous
 
 # 2. Services
 
+To use any service, please add the following header in all API calls:
+
+    X-RapidAPI-Key: {{X-RapidAPI-Key}}
+    X-RapidAPI-Host: {{X-RapidAPI-Host}}
+
+The key and the host are provided to you by the platform Rapid API : 
+https://rapidapi.com/AminovOne/api/ifc-bim-services4
 ## 2.1 IFC files Registration
 
 End point to upload files on the cloud.\nThe files will be kept for a duration of 4 hours then deleted.\nIt will return a ticket that can be used for other services.\nThe ticket is also valid for 4 hours
