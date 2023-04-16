@@ -1,13 +1,13 @@
 **Aminov API**
 # BIM IFC Services
 ![Topology1](Images/building-1.png)
-**BCFv3.0** is based on BCFv2.1.
 
+**BCFv3.0** is based on BCFv2.1.
 **Swagger / OpenAPI Specification**  
-BCF-API on SwaggerHub Coming soon  
+On SwaggerHub Coming soon  
 
 # Contributing
-Please feel free to create a ticket if you would like advice or suggestions for enhancing or creating new services.
+Please don't hesitate to create a ticket if you would like advice or suggestions on how to improve or create new services.
 
 **Table of Contents**
 
