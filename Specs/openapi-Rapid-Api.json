@@ -1,0 +1,675 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/register": {
+            "post": {
+                "summary": "Register Files",
+                "description": "Purpose : End point to upload files on the cloud.\nThe files will be kept for a duration of 4 hours then deleted.\nIt will return a ticket that can be used for other services.\nThe ticket is also valid for 4 hours",
+                "operationId": "register_files_register_post",
+                "parameters": [
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Key",
+                            "type": "string",
+                            "default": "X-RapidAPI-Key"
+                        },
+                        "name": "X-RapidAPI-Key",
+                        "in": "header"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Host",
+                            "type": "string",
+                            "default": "X-RapidAPI-Host"
+                        },
+                        "name": "X-RapidAPI-Host",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_register_files_register_post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileTicket"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exists/{ticket}": {
+            "get": {
+                "summary": "Exists",
+                "description": "Check if the key ticket is available or not",
+                "operationId": "exists_exists__ticket__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Ticket",
+                            "type": "string"
+                        },
+                        "name": "ticket",
+                        "in": "path"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Key",
+                            "type": "string",
+                            "default": "X-RapidAPI-Key"
+                        },
+                        "name": "X-RapidAPI-Key",
+                        "in": "header"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Host",
+                            "type": "string",
+                            "default": "X-RapidAPI-Host"
+                        },
+                        "name": "X-RapidAPI-Host",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TicketStatus"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/syntax/{ticket}": {
+            "get": {
+                "summary": "Syntax Status",
+                "description": "Check Result of a syntax check",
+                "operationId": "syntax_status_syntax__ticket__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Ticket",
+                            "type": "string"
+                        },
+                        "name": "ticket",
+                        "in": "path"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Key",
+                            "type": "string",
+                            "default": "X-RapidAPI-Key"
+                        },
+                        "name": "X-RapidAPI-Key",
+                        "in": "header"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Host",
+                            "type": "string",
+                            "default": "X-RapidAPI-Host"
+                        },
+                        "name": "X-RapidAPI-Host",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResultList"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Check Syntax",
+                "description": "For Given job ticket, execute syntax review",
+                "operationId": "check_syntax_syntax__ticket__post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Ticket",
+                            "type": "string"
+                        },
+                        "name": "ticket",
+                        "in": "path"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Key",
+                            "type": "string",
+                            "default": "X-RapidAPI-Key"
+                        },
+                        "name": "X-RapidAPI-Key",
+                        "in": "header"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Host",
+                            "type": "string",
+                            "default": "X-RapidAPI-Host"
+                        },
+                        "name": "X-RapidAPI-Host",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResultAccess"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ilod/{ticket}": {
+            "get": {
+                "summary": "Ilod Status",
+                "description": "Check Result of an ILOD check",
+                "operationId": "ilod_status_ilod__ticket__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Ticket",
+                            "type": "string"
+                        },
+                        "name": "ticket",
+                        "in": "path"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Key",
+                            "type": "string",
+                            "default": "X-RapidAPI-Key"
+                        },
+                        "name": "X-RapidAPI-Key",
+                        "in": "header"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Host",
+                            "type": "string",
+                            "default": "X-RapidAPI-Host"
+                        },
+                        "name": "X-RapidAPI-Host",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ILODResults"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Check Ilod",
+                "description": "For Given job ticket, execute ILOD review",
+                "operationId": "check_ilod_ilod__ticket__post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Ticket",
+                            "type": "string"
+                        },
+                        "name": "ticket",
+                        "in": "path"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Key",
+                            "type": "string",
+                            "default": "X-RapidAPI-Key"
+                        },
+                        "name": "X-RapidAPI-Key",
+                        "in": "header"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "X-RapidAPI-Host",
+                            "type": "string",
+                            "default": "X-RapidAPI-Host"
+                        },
+                        "name": "X-RapidAPI-Host",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Payload",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/IlodRuleRequest"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResultAccess"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Body_register_files_register_post": {
+                "title": "Body_register_files_register_post",
+                "required": [
+                    "files"
+                ],
+                "type": "object",
+                "properties": {
+                    "files": {
+                        "title": "Files",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    }
+                }
+            },
+            "FileTicket": {
+                "title": "FileTicket",
+                "required": [
+                    "ticket",
+                    "bytes",
+                    "life",
+                    "files",
+                    "msg"
+                ],
+                "type": "object",
+                "properties": {
+                    "ticket": {
+                        "title": "Ticket",
+                        "type": "string"
+                    },
+                    "bytes": {
+                        "title": "Bytes",
+                        "type": "integer"
+                    },
+                    "life": {
+                        "title": "Life",
+                        "type": "string"
+                    },
+                    "files": {
+                        "title": "Files",
+                        "type": "integer"
+                    },
+                    "msg": {
+                        "title": "Msg",
+                        "type": "string"
+                    }
+                },
+                "description": "This is ticket object that gives you a ticket after models upload.\n\nAttributes:\n-----------\nticket : str\n    A string representing the unique identifier of the file ticket.\nbytes : int\n    An integer representing the size of the file in bytes.\nlife : str\n    A string representing the expiration time of the ticket.\nfiles : int\n    An integer representing the number of files associated with the ticket.\nmsg : str\n    A string representing a message associated with the ticket."
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "ILODResult": {
+                "title": "ILODResult",
+                "required": [
+                    "id",
+                    "fail",
+                    "success"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "fail": {
+                        "title": "Fail",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "success": {
+                        "title": "Success",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "description": "A class that represents an ILOD result object.\n\nAttributes:\n-----------\nid : str\n    A string representing the GUID of the IFC element.\nfail : List[str]\n    A list of strings representing the list of failed rules.\nsuccess : List[str]\n    A list of strings representing the list of successful rules."
+            },
+            "ILODResults": {
+                "title": "ILODResults",
+                "required": [
+                    "result",
+                    "expiry"
+                ],
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/Result"
+                    },
+                    "expiry": {
+                        "title": "Expiry",
+                        "type": "string"
+                    }
+                },
+                "description": "A class that represents an ILOD results object.\n\nAttributes:\n-----------\nresult : Result\n    A Result object representing the result of the ILOD operation.\nexpiry : str\n    A string representing the expiration time of the result."
+            },
+            "IlodRuleRequest": {
+                "title": "IlodRuleRequest",
+                "required": [
+                    "id",
+                    "ifctypes",
+                    "propertySet",
+                    "property",
+                    "operator",
+                    "value"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "ifctypes": {
+                        "title": "Ifctypes",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "propertySet": {
+                        "title": "Propertyset",
+                        "type": "string"
+                    },
+                    "property": {
+                        "title": "Property",
+                        "type": "string"
+                    },
+                    "operator": {
+                        "$ref": "#/components/schemas/ilod_operator"
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    }
+                },
+                "description": "A class that represents an ILOD rule request object.\n\nAttributes:\n-----------\nid : str\n    A string representing the unique identifier of the ILOD rule request.\nifctypes : List[str]\n    A list of strings representing the IFC types to which the rule applies.\npropertySet : str\n    A string representing the property set name to which the rule applies.\nproperty : str\n    A string representing the property name to which the rule applies.\noperator : ilod_operator\n    An enumeration representing the operator used in the rule.\nvalue : str\n    A string representing the value used in the rule."
+            },
+            "Result": {
+                "title": "Result",
+                "type": "object",
+                "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/ILODResult"
+                    }
+                },
+                "description": "A class that represents a result object.\n\nAttributes:\n-----------\n__root__ : Dict[str, List[ILODResult]]\n    A dictionary representing the root object of the result."
+            },
+            "ResultAccess": {
+                "title": "ResultAccess",
+                "required": [
+                    "ticket",
+                    "msg",
+                    "url",
+                    "method"
+                ],
+                "type": "object",
+                "properties": {
+                    "ticket": {
+                        "title": "Ticket",
+                        "type": "string"
+                    },
+                    "msg": {
+                        "title": "Msg",
+                        "type": "string"
+                    },
+                    "url": {
+                        "title": "Url",
+                        "type": "string"
+                    },
+                    "method": {
+                        "title": "Method",
+                        "type": "string"
+                    }
+                },
+                "description": "A class that represents a result access object.\n\nAttributes:\n-----------\nticket : str\n    A string representing the unique identifier of the file ticket.\nmsg : str\n    A string representing a message associated with the result access.\nurl : str\n    A string representing the URL of the result access.\nmethod : str\n    A string representing the method used to access the result."
+            },
+            "TicketStatus": {
+                "title": "TicketStatus",
+                "required": [
+                    "exists"
+                ],
+                "type": "object",
+                "properties": {
+                    "exists": {
+                        "title": "Exists",
+                        "type": "boolean"
+                    }
+                },
+                "description": "A class that represents a ticket status object.\n\nAttributes:\n-----------\nexists : bool\n    A boolean representing whether the ticket exists or not."
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            },
+            "ValidationResult": {
+                "title": "ValidationResult",
+                "required": [
+                    "message",
+                    "item"
+                ],
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "item": {
+                        "title": "Item",
+                        "type": "string"
+                    }
+                },
+                "description": "A class that represents a validation result object.\n\nAttributes:\n-----------\nmessage : str\n    A string representing the validation message.\nitem : str\n    A string representing the validated item."
+            },
+            "ValidationResultList": {
+                "title": "ValidationResultList",
+                "required": [
+                    "result",
+                    "expiry"
+                ],
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "title": "Result",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationResult"
+                        }
+                    },
+                    "expiry": {
+                        "title": "Expiry",
+                        "type": "string"
+                    }
+                },
+                "description": "A class that represents a validation result list object.\n\nAttributes:\n-----------\nresult : List[ValidationResult]\n    A list of ValidationResult objects representing the list of validation results.\nexpiry : str\n    A string representing the expiration time of the validation result."
+            },
+            "ilod_operator": {
+                "title": "ilod_operator",
+                "enum": [
+                    "NOTEMPTY",
+                    "GT",
+                    "EQ"
+                ],
+                "type": "string",
+                "description": "Enumeration of all ILOD Operators\n...\nAttributes\n----------\nNOTEMPTY : Str\n    Not empty\nGREATER : str\n    Greater than"
+            }
+        }
+    }
+}
